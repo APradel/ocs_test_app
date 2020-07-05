@@ -6,6 +6,6 @@
     <color name="colorOrange">#FF5722</color>
     <color name="colorWhiteText">#FFF</color>
     <color name="colorWhiteSubText">#BCBCBC</color>
-    <color name="colorBackground">#222222</color>
-    <color name="colorBackgroundSecondary">#424242</color>
+    <color name="colorBackground">@color/colorPrimaryDark</color>
+    <color name="colorBackgroundSecondary">@color/colorPrimary</color>
 </resources>
