@@ -4,17 +4,17 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.MainActivityFragment">
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="?attr/colorBackground"
-        android:orientation="vertical">
+        android:background="?attr/colorBackground">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:text="Welcome, please enter the name of TV series or a movie."
-            android:textColor="?attr/colorText" />
-    </LinearLayout>
+            android:text="@string/welcome_text"
+            android:textColor="?attr/colorText"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 </FrameLayout>

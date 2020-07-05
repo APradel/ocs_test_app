@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">OCS TestApp</string>
     <string name="toolbar_title">OCS</string>
+    <string name="welcome_text">Welcome, please enter the name of a TV series or a movie.</string>
     <string name="search_label">Search label</string>
     <string name="search_title">Search</string>
     <string name="search_result_loading_text">Searching…</string>
