@@ -10,10 +10,15 @@ import android.view.ViewGroup
 import com.example.ocstestapp.R
 import com.example.ocstestapp.api.ocs.OCSApiUtils
 import com.example.ocstestapp.api.ocs.results.OCSApiSearchResult
+import com.example.ocstestapp.ui.VideoPlayer
 import com.example.ocstestapp.ui.base.BaseFragment
+import kotlinx.android.synthetic.main.program_info_fragment.*
 import kotlinx.android.synthetic.main.program_info_fragment.view.*
+import kotlinx.android.synthetic.main.program_info_fragment.view.program_info_play_button
+import kotlinx.android.synthetic.main.program_info_fragment.view.program_info_player_view
 import java.lang.ref.WeakReference
 
+private const val VIDEO_PATH = "https://bitmovin-a.akamaihd.net/content/MI201109210084_1/mpds/f08e80da-bf1d-4e3d-8899-f0f6155f6efa.mpd"
 
 class ProgramInfoFragment : BaseFragment() {
 
@@ -21,6 +26,7 @@ class ProgramInfoFragment : BaseFragment() {
     private lateinit var programInfoInitializerAsyncTask: ProgramInfoInitializerAsyncTask
     lateinit var detailLink: String
     var ocsApiSearchResult: OCSApiSearchResult? = null
+    lateinit var videoPlayer: VideoPlayer
 
     companion object {
         fun newInstance(detailLink: String?, ocsApiSearchResult: OCSApiSearchResult?)
@@ -47,9 +53,27 @@ class ProgramInfoFragment : BaseFragment() {
         return inflater.inflate(R.layout.program_info_fragment, container, false)
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        videoPlayer.onDestroy()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        videoPlayer.pause()
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         programInfoInitializerAsyncTask.execute()
+        context?.let {
+            videoPlayer = VideoPlayer(it, program_info_player_view, VIDEO_PATH)
+        }
+        program_info_play_button.setOnClickListener {
+            program_info_player_view.visibility = View.VISIBLE
+            program_info_play_button.visibility = View.GONE
+            videoPlayer.start()
+        }
     }
 
     class ProgramInfoInitializerAsyncTask(private val programInfoWeakReference: WeakReference<ProgramInfoFragment>)
@@ -73,7 +97,6 @@ class ProgramInfoFragment : BaseFragment() {
         override fun onPostExecute(result: Unit?) {
             programInfoWeakReference.get()?.apply {
                 programInfoViewItem.retrieveData(true, Handler(Looper.getMainLooper())) {
-                    //
                     view?.let {
                         it.program_info_image.setImageDrawable(programInfoViewItem.imageDrawable)
                         it.program_info_image_progress.visibility = View.GONE
