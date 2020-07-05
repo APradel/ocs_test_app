@@ -2,12 +2,13 @@ package com.example.ocstestapp.ui.searchresult
 
 import android.app.ActivityOptions
 import android.content.Intent
-import androidx.lifecycle.ViewModelProvider
+import android.content.res.Configuration
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ocstestapp.databinding.SearchResultFragmentBinding
 import com.example.ocstestapp.ui.base.BaseFragment
@@ -16,8 +17,10 @@ import com.example.ocstestapp.ui.programinfo.OCS_API_RESEARCH_RESULT_KEY
 import com.example.ocstestapp.ui.programinfo.ProgramInfoActivity
 import kotlinx.android.synthetic.main.search_result_fragment.*
 
+
 const val SEARCH_QUERY_KEY = "searchQuery"
-const val NUMBER_OF_COLS = 2
+const val NUMBER_OF_COLS_PORTRAIT = 2
+const val NUMBER_OF_COLS_LANDSCAPE = 3
 
 class SearchResultFragment : BaseFragment() {
 
@@ -58,7 +61,11 @@ class SearchResultFragment : BaseFragment() {
         val viewModel = viewDataBinding.viewModel
         if (viewModel != null) {
             adapter = SearchResultAdapter(viewDataBinding.viewModel!!, onItemClicked)
-            val layoutManager = GridLayoutManager(activity, NUMBER_OF_COLS)
+            var nbOfCols = NUMBER_OF_COLS_PORTRAIT
+            if (resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE) {
+                nbOfCols = NUMBER_OF_COLS_LANDSCAPE
+            }
+            val layoutManager = GridLayoutManager(activity, nbOfCols)
             results_recycler_view.layoutManager = layoutManager
             results_recycler_view.adapter = adapter
 
