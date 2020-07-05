@@ -67,15 +67,10 @@ class MainActivity : BaseActivity()
         searchView = menu.findItem(R.id.search).actionView as SearchView
         searchView?.apply {
             setSearchableInfo(searchManager.getSearchableInfo(componentName))
-            setOnCloseListener {
-                showDebugMessage(this@MainActivity, "Closing ")
-                true
-            }
         }
         val searchMenuItem: MenuItem = menu.findItem(R.id.search)
         searchMenuItem.setOnActionExpandListener(object : MenuItem.OnActionExpandListener {
             override fun onMenuItemActionExpand(item: MenuItem?): Boolean {
-                showDebugMessage(this@MainActivity, "Opening ")
                 searchView?.apply {
                     onActionViewExpanded()
                     setQuery(searchQueryRestored, false)
@@ -122,7 +117,6 @@ class MainActivity : BaseActivity()
 
     private fun onSearchQueryReceived(query: String)
     {
-        showDebugMessage(this, "The query is: $query")
         launchResearchFragment(query)
     }
 
@@ -133,7 +127,6 @@ class MainActivity : BaseActivity()
 
     private fun goToHomePage()
     {
-        showDebugMessage(this@MainActivity, "Opening main menu ", true)
         launchMainFragment()
     }
 }
