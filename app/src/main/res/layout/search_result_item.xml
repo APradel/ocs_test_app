@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="search_result" type="com.example.ocstestapp.ui.searchresult.SearchResultViewItem"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical" android:layout_width="match_parent"
+        android:layout_height="225dp"
+        android:gravity="center"
+        android:background="?attr/colorBackgroundResultItem"
+        android:layout_margin="3dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:visibility="@{search_result.imageLoaded ? View.GONE : View.VISIBLE}"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@{search_result.imageLoaded ? search_result.imageDrawable : @android:drawable/ic_media_play}"
+                android:visibility="@{search_result.imageLoaded ? View.VISIBLE : View.GONE}"
+                android:contentDescription="@string/search_result_image_description"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:text="@{search_result.title}"
+                android:textSize="15sp"
+                android:textColor="?attr/colorTextSearchResultTitle"
+                android:textAlignment="center"
+                android:hint="{search_result.title}"
+                android:textColorHint="?attr/colorTextSearchResultTitle"/>
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:text="@{search_result.subtitle}"
+            android:textSize="12sp"
+            android:textColor="?attr/colorTextSearchResultSubTitle"
+            android:textAlignment="center"
+            android:hint="{search_result.subtitle}"
+            android:textColorHint="?attr/colorTextSearchResultSubTitle"/>
+
+    </LinearLayout>
+</layout>

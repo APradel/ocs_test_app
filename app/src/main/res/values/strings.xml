@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">OCS TestApp</string>
+    <string name="search_label">Search label</string>
+    <string name="search_title">Search</string>
+    <string name="search_result_loading_text">Searching…</string>
+    <string name="no_result_found">Nothing were found, please try again</string>
+    <string name="search_hint">Ex: Game of thrones, Walking Dead, etc.</string>
+    <string name="search_result_image_description">Image representing the program</string>
 </resources>

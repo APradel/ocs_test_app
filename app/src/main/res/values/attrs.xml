@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorText" format="reference|color"/>
+    <attr name="colorTextToolbar" format="reference|color" />
+    <attr name="colorTextSearchResultTitle" format="reference|color" />
+    <attr name="colorTextSearchResultSubTitle" format="reference|color" />
+    <attr name="colorBackground" format="reference|color" />
+    <attr name="colorBackgroundResultItem" format="reference|color" />
+
+</resources>

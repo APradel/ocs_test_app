@@ -6,6 +6,12 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorText">@color/colorWhiteText</item>
+        <item name="colorTextToolbar">@color/colorOrange</item>
+        <item name="colorTextSearchResultTitle">@color/colorWhiteText</item>
+        <item name="colorTextSearchResultSubTitle">@color/colorWhiteSubText</item>
+        <item name="colorBackground">@color/colorBackground</item>
+        <item name="colorBackgroundResultItem">@color/colorBackgroundSecondary</item>
     </style>
 
 </resources>
