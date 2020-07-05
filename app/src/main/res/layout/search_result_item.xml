@@ -9,7 +9,7 @@
         android:orientation="vertical" android:layout_width="match_parent"
         android:layout_height="225dp"
         android:gravity="center"
-        android:background="?attr/colorBackgroundResultItem"
+        android:background="@drawable/search_result_item_background"
         android:layout_margin="3dp">
 
         <RelativeLayout
