@@ -32,7 +32,7 @@
             android:layout_height="match_parent"
             app:show_buffering="when_playing"
             app:show_shuffle_button="false"
-            android:visibility="invisible"/>
+            android:visibility="gone"/>
         <ImageButton
             android:id="@+id/program_info_play_button"
             android:layout_width="match_parent"
