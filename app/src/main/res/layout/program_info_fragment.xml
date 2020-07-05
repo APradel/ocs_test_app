@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/programinfo"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.programinfo.ProgramInfoFragment"
+    android:orientation="vertical"
+    android:background="?attr/colorBackground"
+    android:gravity="center"
+    android:layout_marginLeft="5dp"
+    android:layout_marginRight="5dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:gravity="center">
+        <ImageView
+            android:id="@+id/program_info_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+        <ProgressBar
+            android:id="@+id/program_info_image_progress"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_centerInParent="true"/>
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:src="@android:drawable/ic_media_play"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="5dp">
+        <TextView
+            android:id="@+id/program_info_title"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:textColor="?attr/colorTextSearchResultTitle"
+            android:textSize="16sp"/>
+        <TextView
+            android:id="@+id/program_info_subtitle"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:gravity="center_vertical"
+            android:textColor="?attr/colorTextSearchResultSubTitle"
+            android:textSize="12sp" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+        <TextView
+            android:id="@+id/program_info_pitch"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:textColor="?attr/colorText"/>
+
+    </RelativeLayout>
+<!--    <Button-->
+<!--        android:id="@+id/program_info_favorites_button"-->
+<!--        android:layout_width="250dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="@string/add_to_favorites"/>-->
+
+</LinearLayout>

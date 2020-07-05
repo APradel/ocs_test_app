@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.ocstestapp.databinding.SearchResultFragmentBinding
 import com.example.ocstestapp.ui.base.BaseFragment
-import com.example.ocstestapp.utils.showDebugMessage
+import com.example.ocstestapp.ui.programinfo.OCS_API_DETAIL_LINK_KEY
+import com.example.ocstestapp.ui.programinfo.OCS_API_RESEARCH_RESULT_KEY
+import com.example.ocstestapp.ui.programinfo.ProgramInfoActivity
 import kotlinx.android.synthetic.main.search_result_fragment.*
 
 const val SEARCH_QUERY_KEY = "searchQuery"
@@ -72,6 +74,10 @@ class SearchResultFragment : BaseFragment() {
 
     private var onItemClicked: (item: SearchResultViewItem)-> Unit =
     {
-        showDebugMessage(context, "item clicked")
+        val intent: Intent = Intent(context, ProgramInfoActivity::class.java)
+        intent.putExtra(OCS_API_DETAIL_LINK_KEY, it.data.detailLink)
+        intent.putExtra(OCS_API_RESEARCH_RESULT_KEY, it.data)
+        startActivity(intent,
+            ActivityOptions.makeSceneTransitionAnimation(activity).toBundle())
     }
 }
