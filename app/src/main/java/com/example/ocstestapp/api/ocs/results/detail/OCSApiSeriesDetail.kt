@@ -2,9 +2,10 @@ package com.example.ocstestapp.api.ocs.results.detail
 
 import com.example.ocstestapp.api.ocs.JSON_KEY_SEASONS
 import org.json.JSONObject
+import java.io.Serializable
 
 
-class OCSApiSeriesDetail(jsonObject: JSONObject) : OCSApiBaseDetail(jsonObject)
+class OCSApiSeriesDetail(jsonObject: JSONObject) : OCSApiBaseDetail(jsonObject), Serializable
 {
     val seasons: ArrayList<OCSApiSeasonDetail> = ArrayList()
 

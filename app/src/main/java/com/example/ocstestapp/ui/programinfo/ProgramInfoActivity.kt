@@ -5,7 +5,6 @@ import android.os.Bundle
 import com.example.ocstestapp.R
 import com.example.ocstestapp.api.ocs.results.OCSApiSearchResult
 import com.example.ocstestapp.ui.base.BaseActivity
-import com.example.ocstestapp.utils.showDebugMessage
 
 const val OCS_API_DETAIL_LINK_KEY = "detailLinkKey"
 const val OCS_API_RESEARCH_RESULT_KEY = "researchResult"
@@ -21,7 +20,7 @@ class ProgramInfoActivity : BaseActivity()
     override fun launchMainFragment()
     {
         supportFragmentManager.beginTransaction()
-            .replace(R.id.container, ProgramInfoFragment.newInstance(detailLink, ocsApiSearchResult))
+            .replace(R.id.program_fragment, ProgramInfoFragment.newInstance(detailLink, ocsApiSearchResult))
             .commitNow()
     }
 

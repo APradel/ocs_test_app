@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="season_info" type="com.example.ocstestapp.ui.seasonslist.SeasonsListViewItem"/>
+    </data>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:gravity="center"
+        android:background="?attr/colorBackgroundResultItem"
+        android:layout_margin="5dp">
+
+        <RelativeLayout
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:gravity="center">
+
+            <ProgressBar
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_centerInParent="true"
+                android:visibility="@{season_info.imageLoaded ? View.GONE : View.VISIBLE}"/>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@{season_info.imageLoaded ? season_info.imageDrawable : @android:drawable/ic_media_play}"
+                android:visibility="@{season_info.imageLoaded ? View.VISIBLE : View.GONE}"
+                android:contentDescription="@string/search_result_image_description"/>
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="15dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="5dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="2"
+                android:ellipsize="end"
+                android:text="@{@string/season_info_title(season_info.number)}"
+                android:textSize="15sp"
+                android:textColor="?attr/colorTextSearchResultTitle"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@{season_info.pitch}"
+                android:ellipsize="end"
+                android:maxLines="5"
+                android:textSize="13sp"
+                android:textColor="?attr/colorTextSearchResultSubTitle"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</layout>

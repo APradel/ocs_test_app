@@ -10,8 +10,11 @@ import android.view.ViewGroup
 import com.example.ocstestapp.R
 import com.example.ocstestapp.api.ocs.OCSApiUtils
 import com.example.ocstestapp.api.ocs.results.OCSApiSearchResult
+import com.example.ocstestapp.api.ocs.results.detail.OCSApiSeriesDetail
 import com.example.ocstestapp.ui.VideoPlayer
 import com.example.ocstestapp.ui.base.BaseFragment
+import com.example.ocstestapp.ui.seasonslist.SeasonsListFragment
+import kotlinx.android.synthetic.main.program_info_activity.*
 import kotlinx.android.synthetic.main.program_info_fragment.*
 import kotlinx.android.synthetic.main.program_info_fragment.view.*
 import kotlinx.android.synthetic.main.program_info_fragment.view.program_info_play_button
@@ -76,6 +79,20 @@ class ProgramInfoFragment : BaseFragment() {
         }
     }
 
+    fun launchSeasonsListFragment()
+    {
+        val programInfo = programInfoViewItem.data
+        if(programInfo is OCSApiSeriesDetail)
+        {
+            activity?.apply {
+                supportFragmentManager.beginTransaction()
+                    .replace(R.id.series_fragment, SeasonsListFragment.newInstance(programInfo))
+                    .commitNow()
+                series_fragment.visibility = View.VISIBLE
+            }
+        }
+    }
+
     class ProgramInfoInitializerAsyncTask(private val programInfoWeakReference: WeakReference<ProgramInfoFragment>)
         : AsyncTask<Unit, Unit, Unit>()
     {
@@ -83,7 +100,9 @@ class ProgramInfoFragment : BaseFragment() {
             programInfoWeakReference.get()?.apply {
                 val apiResponse = OCSApiUtils.getOCSApiDetail(detailLink)
                     ?: throw java.lang.NullPointerException("Detail couldn't be found")
+
                 programInfoViewItem = ProgramInfoViewItem(apiResponse)
+
                 if(null != ocsApiSearchResult)
                 {
                     programInfoViewItem.title = ocsApiSearchResult?.title
@@ -96,6 +115,8 @@ class ProgramInfoFragment : BaseFragment() {
 
         override fun onPostExecute(result: Unit?) {
             programInfoWeakReference.get()?.apply {
+                //Program info were founded, the system will now try to display seasons if required
+                launchSeasonsListFragment()
                 programInfoViewItem.retrieveData(true, Handler(Looper.getMainLooper())) {
                     view?.let {
                         it.program_info_image.setImageDrawable(programInfoViewItem.imageDrawable)
